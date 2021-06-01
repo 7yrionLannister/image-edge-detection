@@ -49,10 +49,6 @@ namespace image_filter
             
             // Post byte[] to database
             Console.WriteLine("Hello World! " + data.Length);
-
-            for (int i = 1077; i < data.Length; i++) {
-                data[i] /= 2;
-            }
             
             data = filter(data, algorithm);
 
@@ -84,9 +80,12 @@ namespace image_filter
             int offset = 1078;
             int n = (int) Math.Sqrt(data.Length - offset);
             int xlim = offset + n*(n-1) + 1 - n; // subtract n becasue image lower limit is ignored
-            for (int x = offset + n; x < xlim; x += n) // starts at offset + n because image upper limit of the image is ignored
+            long sum = 0;
+            long cuenta = 0;
+            for (int x = offset + n; x < xlim; x += n) // starts at offset
+                                                       // + n because image upper limit of the image is ignored
             {
-                for (int y = 1; y < n; y++) // starts at 1 because
+                for (int y = 1; y < n - 1; y++) // starts at 1 because
                 {
                     C[x + y] = 0; // resets target matrix on the go
                     for (int i = 0; i < kernel.Length; i++)
@@ -99,12 +98,15 @@ namespace image_filter
                             C[x + y] = (byte) (C[x + y] + data[row + col] * kernel[i][j]);
                         }
                     }
+                    cuenta++;
+                    sum += C[x + y];
                 }
             }
+            Console.WriteLine("La suma es " + sum + " la cuenta es " + cuenta);
             return C;
         }
 
-        static byte[] filteringAlgorithmXYIJ2(byte[] data)
+        /*static byte[] filteringAlgorithmXYIJ2(byte[] data)
         {
             int offset = 1078;
             int n = (int)Math.Sqrt(data.Length - offset);
@@ -125,26 +127,17 @@ namespace image_filter
                     }
                 }
             }
-            /*
+            
             for (int x = 1; x < n - 1; x++) // starts at offset + n because image upper limit of the image is ignored
             {
                 for (int y = 1; y < n - 1; y++) // starts at 1 because
                 {
                     data[offset + x * n + y] = C[x, y];
                 }
-            }*/
-            int co = 0;
-            for (int x = 0; x < n; x++) // starts at offset + n because image upper limit of the image is ignored
-            {
-                for (int y = 0; y < n; y++) // starts at 1 because
-                {
-                    data[offset + co] = C[x, y];
-                    co++;
-                }
             }
 
             return data;
-        }
+        }*/
 
         static void printUsage() {
             Console.Error.WriteLine("Usage: ");
