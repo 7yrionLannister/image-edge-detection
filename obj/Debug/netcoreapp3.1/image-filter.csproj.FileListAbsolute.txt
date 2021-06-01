@@ -1,0 +1,14 @@
+D:\OneDrive\OneDrive - Universidad Icesi (@icesi.edu.co)\Icesi\Septimo_semestre\arquitectura-de-computadores\final-workshop\image-filter\bin\Debug\netcoreapp3.1\image-filter.exe
+D:\OneDrive\OneDrive - Universidad Icesi (@icesi.edu.co)\Icesi\Septimo_semestre\arquitectura-de-computadores\final-workshop\image-filter\bin\Debug\netcoreapp3.1\image-filter.deps.json
+D:\OneDrive\OneDrive - Universidad Icesi (@icesi.edu.co)\Icesi\Septimo_semestre\arquitectura-de-computadores\final-workshop\image-filter\bin\Debug\netcoreapp3.1\image-filter.runtimeconfig.json
+D:\OneDrive\OneDrive - Universidad Icesi (@icesi.edu.co)\Icesi\Septimo_semestre\arquitectura-de-computadores\final-workshop\image-filter\bin\Debug\netcoreapp3.1\image-filter.runtimeconfig.dev.json
+D:\OneDrive\OneDrive - Universidad Icesi (@icesi.edu.co)\Icesi\Septimo_semestre\arquitectura-de-computadores\final-workshop\image-filter\bin\Debug\netcoreapp3.1\image-filter.dll
+D:\OneDrive\OneDrive - Universidad Icesi (@icesi.edu.co)\Icesi\Septimo_semestre\arquitectura-de-computadores\final-workshop\image-filter\bin\Debug\netcoreapp3.1\image-filter.pdb
+D:\OneDrive\OneDrive - Universidad Icesi (@icesi.edu.co)\Icesi\Septimo_semestre\arquitectura-de-computadores\final-workshop\image-filter\obj\Debug\netcoreapp3.1\image-filter.csprojAssemblyReference.cache
+D:\OneDrive\OneDrive - Universidad Icesi (@icesi.edu.co)\Icesi\Septimo_semestre\arquitectura-de-computadores\final-workshop\image-filter\obj\Debug\netcoreapp3.1\image-filter.AssemblyInfoInputs.cache
+D:\OneDrive\OneDrive - Universidad Icesi (@icesi.edu.co)\Icesi\Septimo_semestre\arquitectura-de-computadores\final-workshop\image-filter\obj\Debug\netcoreapp3.1\image-filter.AssemblyInfo.cs
+D:\OneDrive\OneDrive - Universidad Icesi (@icesi.edu.co)\Icesi\Septimo_semestre\arquitectura-de-computadores\final-workshop\image-filter\obj\Debug\netcoreapp3.1\image-filter.csproj.CoreCompileInputs.cache
+D:\OneDrive\OneDrive - Universidad Icesi (@icesi.edu.co)\Icesi\Septimo_semestre\arquitectura-de-computadores\final-workshop\image-filter\obj\Debug\netcoreapp3.1\image-filter.dll
+D:\OneDrive\OneDrive - Universidad Icesi (@icesi.edu.co)\Icesi\Septimo_semestre\arquitectura-de-computadores\final-workshop\image-filter\obj\Debug\netcoreapp3.1\image-filter.pdb
+D:\OneDrive\OneDrive - Universidad Icesi (@icesi.edu.co)\Icesi\Septimo_semestre\arquitectura-de-computadores\final-workshop\image-filter\obj\Debug\netcoreapp3.1\image-filter.genruntimeconfig.cache
+D:\OneDrive\OneDrive - Universidad Icesi (@icesi.edu.co)\Icesi\Septimo_semestre\arquitectura-de-computadores\final-workshop\image-filter\obj\Debug\netcoreapp3.1\image-filter.csproj.ResolveComReference.cache
