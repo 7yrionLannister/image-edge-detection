@@ -74,11 +74,9 @@ namespace image_filter
                 case "3":
                     return filteringAlgorithmXYUnrolling(data);
                 case "4":
-                    // xyji
-                    return null;
+                    return filteringAlgorithmYXIJ(data);
                 case "5":
-                    // xyji
-                    return null;
+                    return filteringAlgorithmYXJI(data);
                 case "6":
                     return filteringAlgorithmYXUnrolling(data);
             }
@@ -145,6 +143,80 @@ namespace image_filter
                     }
                     count++;
                     sum += C[x + y];
+                }
+            }
+            long end = DateTime.Now.Ticks;
+            // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we divide by 100 to convert to 10^-9 seconds, nanoseconds
+            Console.WriteLine((end - start) / 100); // print time in nanoseconds
+            Console.WriteLine("The sum of the processed pixels is " + sum);
+            Console.WriteLine("The number of pixels processed is " + count);
+            return C;
+        }
+
+        static byte[] filteringAlgorithmYXIJ(byte[] data)
+        {
+            byte[] C = (byte[])data.Clone();
+            int n = (int)Math.Sqrt(data.Length - offset);
+            int xlim = offset + n * (n - 1) + 1 - n; 
+            long sum = 0;
+            long count = 0;
+            long start = DateTime.Now.Ticks;
+            int k = kernel.Length;
+            for (int y = 1; y < n - 1; y++) 
+            {
+                for (int x = offset + n; x < xlim; x += n)
+                {
+                    C[y + x] = 0; 
+                    for (int i = 0; i < k; i++)
+                    {
+                        for (int j = 0; j < k; j++)
+                        {
+                            int col = y + j - 1;
+                            int row = x + (i * n) - n - 1;
+
+                            C[y + x] = (byte)(C[y + x] + data[col + row] * kernel[i][j]);
+                        }
+                    }
+                    count++;
+                    sum += C[y + x];
+                }
+            }
+            long end = DateTime.Now.Ticks;
+            // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we divide by 100 to convert to 10^-9 seconds, nanoseconds
+            Console.WriteLine((end - start) / 100); // print time in nanoseconds
+            Console.WriteLine("The sum of the processed pixels is " + sum);
+            Console.WriteLine("The number of pixels processed is " + count);
+            return C;
+        }
+
+        static byte[] filteringAlgorithmYXJI(byte[] data)
+        {
+            byte[] C = (byte[])data.Clone();
+            int offset = 1078;
+            int n = (int)Math.Sqrt(data.Length - offset);
+            int xlim = offset + n * (n - 1) + 1 - n; 
+            long sum = 0;
+            long count = 0;
+            long start = DateTime.Now.Ticks;
+            int limiteKernel = kernel.Length;
+            for (int y = 1; y < n - 1; y++) 
+                                                       
+            {
+                for (int x = offset + n; x < xlim; x += n) 
+                {
+                    C[y + x] = 0; 
+                    for (int j = 0; j < limiteKernel; j++)
+                    {
+                        for (int i = 0; i < limiteKernel; i++)
+                        {
+                            int col = y + j - 1;
+                            int row = x + (i * n) - n - 1;
+
+                            C[y + x] = (byte)(C[y + x] + data[col + row] * kernel[i][j]);
+                        }
+                    }
+                    count++;
+                    sum += C[y + x];
                 }
             }
             long end = DateTime.Now.Ticks;
