@@ -61,41 +61,82 @@ namespace image_filter
             return 0; // success return code
         }
 
-        static byte[] filter(byte[] data, String algorithm) {
+        static byte[] filter(byte[] data, String algorithm)
+        {
             long start = DateTime.Now.Ticks;
             switch (algorithm)
             {
                 case "1":
                     return filteringAlgorithmXYIJ(data);
+
+                case "2":
+
+                    return filteringAlgorithmXYJI(data);
             }
             long end = DateTime.Now.Ticks;
-            Console.WriteLine((end - start)/100); // print time in nanoseconds
+            Console.WriteLine((end - start) / 100); // print time in nanoseconds
             // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are a 10^-7 seconds, so we divide by 100 to convert to 10^-9, nanoseconds
             return null;
         }
 
-        // There is a 1078 offset in the BMP file format, so the data of the image starts at byte 1078 (position 1078)
-        static byte[] filteringAlgorithmXYIJ(byte[] data) {
-            byte[] C = (byte[]) data.Clone();
+        static byte[] filteringAlgorithmXYJI(byte[] data)
+        {
+            byte[] C = (byte[])data.Clone();
             int offset = 1078;
-            int n = (int) Math.Sqrt(data.Length - offset);
-            int xlim = offset + n*(n-1) + 1 - n; // subtract n becasue image lower limit is ignored
+            int n = (int)Math.Sqrt(data.Length - offset);
+            int xlim = offset + n * (n - 1) + 1 - n; // subtract n becasue image lower limit is ignored
             long sum = 0;
             long cuenta = 0;
+            int limiteKernel = 3;
             for (int x = offset + n; x < xlim; x += n) // starts at offset
                                                        // + n because image upper limit of the image is ignored
             {
                 for (int y = 1; y < n - 1; y++) // starts at 1 because
                 {
                     C[x + y] = 0; // resets target matrix on the go
-                    for (int i = 0; i < kernel.Length; i++)
+                    for (int j = 0; j < limiteKernel; j++)
                     {
-                        for (int j = 0; j < kernel[i].Length; j++)
+                        for (int i = 0; i < limiteKernel; i++)
+                        {
+
+                            int row = x + (i * n) - n - 1;
+                            int col = y + j - 1;
+
+                            C[x + y] = (byte)(C[x + y] + data[row + col] * kernel[i][j]);
+                        }
+                    }
+                    cuenta++;
+                    sum += C[x + y];
+                }
+            }
+            Console.WriteLine("La suma es " + sum + " la cuenta es " + cuenta);
+            return C;
+        }
+
+        // There is a 1078 offset in the BMP file format, so the data of the image starts at byte 1078 (position 1078)
+        static byte[] filteringAlgorithmXYIJ(byte[] data)
+        {
+            byte[] C = (byte[])data.Clone();
+            int offset = 1078;
+            int n = (int)Math.Sqrt(data.Length - offset);
+            int xlim = offset + n * (n - 1) + 1 - n; // subtract n becasue image lower limit is ignored
+            long sum = 0;
+            long cuenta = 0;
+            int limite = 3;
+            for (int x = offset + n; x < xlim; x += n) // starts at offset
+                                                       // + n because image upper limit of the image is ignored
+            {
+                for (int y = 1; y < n - 1; y++) // starts at 1 because
+                {
+                    C[x + y] = 0; // resets target matrix on the go
+                    for (int i = 0; i < limite; i++)
+                    {
+                        for (int j = 0; j < limite; j++)
                         {
                             int row = x + (i * n) - n - 1;
                             int col = y + j - 1;
-                            
-                            C[x + y] = (byte) (C[x + y] + data[row + col] * kernel[i][j]);
+
+                            C[x + y] = (byte)(C[x + y] + data[row + col] * kernel[i][j]);
                         }
                     }
                     cuenta++;
