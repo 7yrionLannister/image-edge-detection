@@ -26,3 +26,17 @@ C:\Users\jdjim\Downloads\image-edge-detection\obj\Debug\netcoreapp3.1\image-filt
 C:\Users\jdjim\Downloads\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.dll
 C:\Users\jdjim\Downloads\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.pdb
 C:\Users\jdjim\Downloads\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.genruntimeconfig.cache
+C:\Users\crisc\Documents\GitHub\image-edge-detection\bin\Debug\netcoreapp3.1\image-filter.exe
+C:\Users\crisc\Documents\GitHub\image-edge-detection\bin\Debug\netcoreapp3.1\image-filter.deps.json
+C:\Users\crisc\Documents\GitHub\image-edge-detection\bin\Debug\netcoreapp3.1\image-filter.runtimeconfig.json
+C:\Users\crisc\Documents\GitHub\image-edge-detection\bin\Debug\netcoreapp3.1\image-filter.runtimeconfig.dev.json
+C:\Users\crisc\Documents\GitHub\image-edge-detection\bin\Debug\netcoreapp3.1\image-filter.dll
+C:\Users\crisc\Documents\GitHub\image-edge-detection\bin\Debug\netcoreapp3.1\image-filter.pdb
+C:\Users\crisc\Documents\GitHub\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.csprojAssemblyReference.cache
+C:\Users\crisc\Documents\GitHub\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.csproj.ResolveComReference.cache
+C:\Users\crisc\Documents\GitHub\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.AssemblyInfoInputs.cache
+C:\Users\crisc\Documents\GitHub\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.AssemblyInfo.cs
+C:\Users\crisc\Documents\GitHub\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.csproj.CoreCompileInputs.cache
+C:\Users\crisc\Documents\GitHub\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.dll
+C:\Users\crisc\Documents\GitHub\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.pdb
+C:\Users\crisc\Documents\GitHub\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.genruntimeconfig.cache
