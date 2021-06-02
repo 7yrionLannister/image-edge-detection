@@ -12,3 +12,17 @@ D:\OneDrive\OneDrive - Universidad Icesi (@icesi.edu.co)\Icesi\Septimo_semestre\
 D:\OneDrive\OneDrive - Universidad Icesi (@icesi.edu.co)\Icesi\Septimo_semestre\arquitectura-de-computadores\final-workshop\image-filter\obj\Debug\netcoreapp3.1\image-filter.pdb
 D:\OneDrive\OneDrive - Universidad Icesi (@icesi.edu.co)\Icesi\Septimo_semestre\arquitectura-de-computadores\final-workshop\image-filter\obj\Debug\netcoreapp3.1\image-filter.genruntimeconfig.cache
 D:\OneDrive\OneDrive - Universidad Icesi (@icesi.edu.co)\Icesi\Septimo_semestre\arquitectura-de-computadores\final-workshop\image-filter\obj\Debug\netcoreapp3.1\image-filter.csproj.ResolveComReference.cache
+C:\Users\jdjim\Downloads\image-edge-detection\bin\Debug\netcoreapp3.1\image-filter.exe
+C:\Users\jdjim\Downloads\image-edge-detection\bin\Debug\netcoreapp3.1\image-filter.deps.json
+C:\Users\jdjim\Downloads\image-edge-detection\bin\Debug\netcoreapp3.1\image-filter.runtimeconfig.json
+C:\Users\jdjim\Downloads\image-edge-detection\bin\Debug\netcoreapp3.1\image-filter.runtimeconfig.dev.json
+C:\Users\jdjim\Downloads\image-edge-detection\bin\Debug\netcoreapp3.1\image-filter.dll
+C:\Users\jdjim\Downloads\image-edge-detection\bin\Debug\netcoreapp3.1\image-filter.pdb
+C:\Users\jdjim\Downloads\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.csprojAssemblyReference.cache
+C:\Users\jdjim\Downloads\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.csproj.ResolveComReference.cache
+C:\Users\jdjim\Downloads\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.AssemblyInfoInputs.cache
+C:\Users\jdjim\Downloads\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.AssemblyInfo.cs
+C:\Users\jdjim\Downloads\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.csproj.CoreCompileInputs.cache
+C:\Users\jdjim\Downloads\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.dll
+C:\Users\jdjim\Downloads\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.pdb
+C:\Users\jdjim\Downloads\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.genruntimeconfig.cache

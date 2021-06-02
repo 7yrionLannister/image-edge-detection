@@ -80,8 +80,7 @@ namespace image_filter
                     // xyji
                     return null;
                 case "6":
-                    // xyji
-                    return null;
+                    return filteringAlgorithmYXUnrolling(data);
             }
             return null;
         }
@@ -171,6 +170,43 @@ namespace image_filter
                     // f(i,j) = X + (i-1)*n + y + j - 2
                     C[x + y] = (byte)
                         ( data[x - n  + y - 2] * kernel[0][0] // 0,0
+                        + data[x - n - 1 + y] * kernel[0][1] // 0,1
+                        + data[x - n + y] * kernel[0][2] // 0,2
+                        + data[x + y - 2] * kernel[1][0] // 1,0
+                        + data[x + y - 1] * kernel[1][1] // 1,1
+                        + data[x + y] * kernel[1][2] // 1,2
+                        + data[x + n + y - 2] * kernel[2][0] // 2,0
+                        + data[x + n + y - 1] * kernel[2][1] // 2,1
+                        + data[x + n + y] * kernel[2][2] // 2,2
+                        );
+
+                    count++;
+                    sum += C[x + y];
+                }
+            }
+            long end = DateTime.Now.Ticks;
+            // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we divide by 100 to convert to 10^-9 seconds, nanoseconds
+            Console.WriteLine((end - start) / 100); // print time in nanoseconds
+            Console.WriteLine("The sum of the processed pixels is " + sum);
+            Console.WriteLine("The number of pixels processed is " + count);
+            return C;
+        }
+
+        static byte[] filteringAlgorithmYXUnrolling(byte[] data)
+        {
+            byte[] C = (byte[])data.Clone();
+            int n = (int)Math.Sqrt(data.Length - offset);
+            int xlim = offset + n * (n - 1) + 1 - n; // subtract n becasue image lower limit is ignored
+            long sum = 0;
+            long count = 0;
+            long start = DateTime.Now.Ticks;
+            for (int y = 1; y < n - 1; y++) // starts at offset + n because image upper limit of the image is ignored
+            {
+                for (int x = offset + n; x < xlim; x += n) // starts at 1 because 
+                {
+                    // f(i,j) = X + (i-1)*n + y + j - 2
+                    C[x + y] = (byte)
+                        (data[x - n + y - 2] * kernel[0][0] // 0,0
                         + data[x - n - 1 + y] * kernel[0][1] // 0,1
                         + data[x - n + y] * kernel[0][2] // 0,2
                         + data[x + y - 2] * kernel[1][0] // 1,0

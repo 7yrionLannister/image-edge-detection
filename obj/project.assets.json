@@ -8,23 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Daniel\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\jdjim\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\OneDrive\\OneDrive - Universidad Icesi (@icesi.edu.co)\\Icesi\\Septimo_semestre\\arquitectura-de-computadores\\final-workshop\\image-filter\\image-filter.csproj",
+      "projectUniqueName": "C:\\Users\\jdjim\\Downloads\\image-edge-detection\\image-filter.csproj",
       "projectName": "image-filter",
-      "projectPath": "D:\\OneDrive\\OneDrive - Universidad Icesi (@icesi.edu.co)\\Icesi\\Septimo_semestre\\arquitectura-de-computadores\\final-workshop\\image-filter\\image-filter.csproj",
-      "packagesPath": "C:\\Users\\Daniel\\.nuget\\packages\\",
-      "outputPath": "D:\\OneDrive\\OneDrive - Universidad Icesi (@icesi.edu.co)\\Icesi\\Septimo_semestre\\arquitectura-de-computadores\\final-workshop\\image-filter\\obj\\",
+      "projectPath": "C:\\Users\\jdjim\\Downloads\\image-edge-detection\\image-filter.csproj",
+      "packagesPath": "C:\\Users\\jdjim\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jdjim\\Downloads\\image-edge-detection\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Daniel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jdjim\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -64,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
