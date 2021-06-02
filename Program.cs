@@ -63,14 +63,14 @@ namespace image_filter
             return 0; // success return code
         }
 
-        static byte[] filter(byte[] data, String algorithm) {
+        static byte[] filter(byte[] data, String algorithm)
+        {
             switch (algorithm)
             {
                 case "1":
                     return filteringAlgorithmXYIJ(data);
                 case "2":
-                    // xyji
-                    return null;
+                    return filteringAlgorithmXYJI(data);
                 case "3":
                     return filteringAlgorithmXYUnrolling(data);
                 case "4":
@@ -84,6 +84,40 @@ namespace image_filter
                     return null;
             }
             return null;
+        }
+
+        static byte[] filteringAlgorithmXYJI(byte[] data)
+        {
+            byte[] C = (byte[])data.Clone();
+            int offset = 1078;
+            int n = (int)Math.Sqrt(data.Length - offset);
+            int xlim = offset + n * (n - 1) + 1 - n; // subtract n becasue image lower limit is ignored
+            long sum = 0;
+            long cuenta = 0;
+            int limiteKernel = 3;
+            for (int x = offset + n; x < xlim; x += n) // starts at offset
+                                                       // + n because image upper limit of the image is ignored
+            {
+                for (int y = 1; y < n - 1; y++) // starts at 1 because
+                {
+                    C[x + y] = 0; // resets target matrix on the go
+                    for (int j = 0; j < limiteKernel; j++)
+                    {
+                        for (int i = 0; i < limiteKernel; i++)
+                        {
+
+                            int row = x + (i * n) - n - 1;
+                            int col = y + j - 1;
+
+                            C[x + y] = (byte)(C[x + y] + data[row + col] * kernel[i][j]);
+                        }
+                    }
+                    cuenta++;
+                    sum += C[x + y];
+                }
+            }
+            Console.WriteLine("La suma es " + sum + " la cuenta es " + cuenta);
+            return C;
         }
 
         // There is a 1078 offset in the BMP file format, so the data of the image starts at byte 1078 (position 1078)
@@ -106,8 +140,8 @@ namespace image_filter
                         {
                             int row = x + (i * n) - n - 1;
                             int col = y + j - 1;
-                            
-                            C[x + y] = (byte) (C[x + y] + data[row + col] * kernel[i][j]);
+
+                            C[x + y] = (byte)(C[x + y] + data[row + col] * kernel[i][j]);
                         }
                     }
                     count++;
