@@ -40,3 +40,17 @@ C:\Users\crisc\Documents\GitHub\image-edge-detection\obj\Debug\netcoreapp3.1\ima
 C:\Users\crisc\Documents\GitHub\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.dll
 C:\Users\crisc\Documents\GitHub\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.pdb
 C:\Users\crisc\Documents\GitHub\image-edge-detection\obj\Debug\netcoreapp3.1\image-filter.genruntimeconfig.cache
+D:\Daniel\Descargas\elelelele\arqui-final\image-filter\bin\Debug\netcoreapp3.1\image-filter.exe
+D:\Daniel\Descargas\elelelele\arqui-final\image-filter\bin\Debug\netcoreapp3.1\image-filter.deps.json
+D:\Daniel\Descargas\elelelele\arqui-final\image-filter\bin\Debug\netcoreapp3.1\image-filter.runtimeconfig.json
+D:\Daniel\Descargas\elelelele\arqui-final\image-filter\bin\Debug\netcoreapp3.1\image-filter.runtimeconfig.dev.json
+D:\Daniel\Descargas\elelelele\arqui-final\image-filter\bin\Debug\netcoreapp3.1\image-filter.dll
+D:\Daniel\Descargas\elelelele\arqui-final\image-filter\bin\Debug\netcoreapp3.1\image-filter.pdb
+D:\Daniel\Descargas\elelelele\arqui-final\image-filter\obj\Debug\netcoreapp3.1\image-filter.csprojAssemblyReference.cache
+D:\Daniel\Descargas\elelelele\arqui-final\image-filter\obj\Debug\netcoreapp3.1\image-filter.csproj.ResolveComReference.cache
+D:\Daniel\Descargas\elelelele\arqui-final\image-filter\obj\Debug\netcoreapp3.1\image-filter.AssemblyInfoInputs.cache
+D:\Daniel\Descargas\elelelele\arqui-final\image-filter\obj\Debug\netcoreapp3.1\image-filter.AssemblyInfo.cs
+D:\Daniel\Descargas\elelelele\arqui-final\image-filter\obj\Debug\netcoreapp3.1\image-filter.csproj.CoreCompileInputs.cache
+D:\Daniel\Descargas\elelelele\arqui-final\image-filter\obj\Debug\netcoreapp3.1\image-filter.dll
+D:\Daniel\Descargas\elelelele\arqui-final\image-filter\obj\Debug\netcoreapp3.1\image-filter.pdb
+D:\Daniel\Descargas\elelelele\arqui-final\image-filter\obj\Debug\netcoreapp3.1\image-filter.genruntimeconfig.cache

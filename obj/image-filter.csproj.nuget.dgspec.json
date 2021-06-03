@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\crisc\\Documents\\GitHub\\image-edge-detection\\image-filter.csproj": {}
+    "D:\\Daniel\\Descargas\\elelelele\\arqui-final\\image-filter\\image-filter.csproj": {}
   },
   "projects": {
-    "C:\\Users\\crisc\\Documents\\GitHub\\image-edge-detection\\image-filter.csproj": {
+    "D:\\Daniel\\Descargas\\elelelele\\arqui-final\\image-filter\\image-filter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\crisc\\Documents\\GitHub\\image-edge-detection\\image-filter.csproj",
+        "projectUniqueName": "D:\\Daniel\\Descargas\\elelelele\\arqui-final\\image-filter\\image-filter.csproj",
         "projectName": "image-filter",
-        "projectPath": "C:\\Users\\crisc\\Documents\\GitHub\\image-edge-detection\\image-filter.csproj",
-        "packagesPath": "C:\\Users\\crisc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\crisc\\Documents\\GitHub\\image-edge-detection\\obj\\",
+        "projectPath": "D:\\Daniel\\Descargas\\elelelele\\arqui-final\\image-filter\\image-filter.csproj",
+        "packagesPath": "C:\\Users\\Daniel\\.nuget\\packages\\",
+        "outputPath": "D:\\Daniel\\Descargas\\elelelele\\arqui-final\\image-filter\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\crisc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Daniel\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -54,7 +57,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

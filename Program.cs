@@ -22,9 +22,12 @@ namespace image_filter
                 printUsage();
                 return 1; // failure return code
             }
-            List<String> dims = new List<string>{"80", "150", "200", "400", "800", "1200", "1400", "1600", "2000", "2500", "3200", "3500"};
             String dimension = args[0];
-            if (!dims.Contains(dimension))
+            try
+            {
+                int.Parse(dimension);
+            }
+            catch 
             {
                 printUsage();
                 return 1;
@@ -338,19 +341,7 @@ namespace image_filter
             Console.Error.WriteLine("Usage: ");
             Console.Error.WriteLine("You must specify the dimension of the input image and the algorithm that performs the filter through positional arguments");
             Console.Error.WriteLine("$ ./Program.exe n a");
-            Console.Error.WriteLine("# Where n is any of");
-            Console.Error.WriteLine("                   * 80");
-            Console.Error.WriteLine("                   * 150");
-            Console.Error.WriteLine("                   * 200");
-            Console.Error.WriteLine("                   * 400");
-            Console.Error.WriteLine("                   * 800");
-            Console.Error.WriteLine("                   * 1200");
-            Console.Error.WriteLine("                   * 1400");
-            Console.Error.WriteLine("                   * 1600");
-            Console.Error.WriteLine("                   * 2000");
-            Console.Error.WriteLine("                   * 2500");
-            Console.Error.WriteLine("                   * 3200");
-            Console.Error.WriteLine("                   * 3500");
+            Console.Error.WriteLine("# Where n is the size of the image, which is assumed to be squared and be located in the imgs folder with a name of nxnx8.bmp");
             Console.Error.WriteLine("# Where a is any of");
             Console.Error.WriteLine("                   * 1 for x-y-i-j");
             Console.Error.WriteLine("                   * 2 for x-y-j-i");
