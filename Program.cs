@@ -41,7 +41,7 @@ namespace image_filter
 
             //https://stackoverflow.com/questions/7296534/how-to-read-an-image-file-to-a-byte
             // Load file meta data with FileInfo
-            String path = "../../../imgs/" + dimension + "x" + dimension + "x8.bmp";
+            String path = "../../../imgs/in/" + dimension + "x" + dimension + "x8.bmp";
             FileInfo fileInfo = new FileInfo(path);
             // The byte[] to save the data in
             byte[] data = new byte[fileInfo.Length];
@@ -57,7 +57,7 @@ namespace image_filter
             data = filter(data, algorithm);
 
             // Write the output image to a BMP file
-            FileInfo output = new FileInfo("../../../imgs/out/" + dimension + "x" + dimension + "x8.bmp");
+            FileInfo output = new FileInfo("../../../imgs/out/" + dimension + "x" + dimension + "x8-" + algorithm + ".bmp");
             using (FileStream fs = output.OpenWrite())
             {
                 fs.Write(data, 0, data.Length);
@@ -86,45 +86,12 @@ namespace image_filter
             return null;
         }
 
-        static byte[] filteringAlgorithmXYJI(byte[] data)
+        // There is a 1078 offset in the BMP file format, so the data of the image starts at byte 1078 (position 1078)
+        static byte[] filteringAlgorithmXYIJ(byte[] data)
         {
             byte[] C = (byte[])data.Clone();
-            int offset = 1078;
             int n = (int)Math.Sqrt(data.Length - offset);
             int xlim = offset + n * (n - 1) + 1 - n; // subtract n becasue image lower limit is ignored
-            long sum = 0;
-            long cuenta = 0;
-            int limiteKernel = 3;
-            for (int x = offset + n; x < xlim; x += n) // starts at offset
-                                                       // + n because image upper limit of the image is ignored
-            {
-                for (int y = 1; y < n - 1; y++) // starts at 1 because
-                {
-                    C[x + y] = 0; // resets target matrix on the go
-                    for (int j = 0; j < limiteKernel; j++)
-                    {
-                        for (int i = 0; i < limiteKernel; i++)
-                        {
-
-                            int row = x + (i * n) - n - 1;
-                            int col = y + j - 1;
-
-                            C[x + y] = (byte)(C[x + y] + data[row + col] * kernel[i][j]);
-                        }
-                    }
-                    cuenta++;
-                    sum += C[x + y];
-                }
-            }
-            Console.WriteLine("La suma es " + sum + " la cuenta es " + cuenta);
-            return C;
-        }
-
-        // There is a 1078 offset in the BMP file format, so the data of the image starts at byte 1078 (position 1078)
-        static byte[] filteringAlgorithmXYIJ(byte[] data) {
-            byte[] C = (byte[]) data.Clone();
-            int n = (int) Math.Sqrt(data.Length - offset);
-            int xlim = offset + n*(n-1) + 1 - n; // subtract n becasue image lower limit is ignored
             long sum = 0;
             long count = 0;
             long start = DateTime.Now.Ticks;
@@ -150,7 +117,83 @@ namespace image_filter
             }
             long end = DateTime.Now.Ticks;
             // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we divide by 100 to convert to 10^-9 seconds, nanoseconds
-            Console.WriteLine((end - start) / 100); // print time in nanoseconds
+            Console.WriteLine("Time executing(ns) is " + ((end - start) / 100)); // print time in nanoseconds
+            Console.WriteLine("The sum of the processed pixels is " + sum);
+            Console.WriteLine("The number of pixels processed is " + count);
+            return C;
+        }
+
+        static byte[] filteringAlgorithmXYJI(byte[] data)
+        {
+            byte[] C = (byte[])data.Clone();
+            int offset = 1078;
+            int n = (int)Math.Sqrt(data.Length - offset);
+            int xlim = offset + n * (n - 1) + 1 - n; // subtract n becasue image lower limit is ignored
+            long sum = 0;
+            long count = 0;
+            int k = 3;
+            long start = DateTime.Now.Ticks;
+            for (int x = offset + n; x < xlim; x += n) // starts at offset
+                                                       // + n because image upper limit of the image is ignored
+            {
+                for (int y = 1; y < n - 1; y++) // starts at 1 because
+                {
+                    C[x + y] = 0; // resets target matrix on the go
+                    for (int j = 0; j < k; j++)
+                    {
+                        for (int i = 0; i < k; i++)
+                        {
+
+                            int row = x + (i * n) - n - 1;
+                            int col = y + j - 1;
+
+                            C[x + y] = (byte)(C[x + y] + data[row + col] * kernel[i][j]);
+                        }
+                    }
+                    count++;
+                    sum += C[x + y];
+                }
+            }
+            long end = DateTime.Now.Ticks;
+            // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we divide by 100 to convert to 10^-9 seconds, nanoseconds
+            Console.WriteLine("Time executing(ns) is " + ((end - start) / 100)); // print time in nanoseconds
+            Console.WriteLine("The sum of the processed pixels is " + sum);
+            Console.WriteLine("The number of pixels processed is " + count);
+            return C;
+        }
+
+        static byte[] filteringAlgorithmXYUnrolling(byte[] data)
+        {
+            byte[] C = (byte[])data.Clone();
+            int n = (int)Math.Sqrt(data.Length - offset);
+            int xlim = offset + n * (n - 1) + 1 - n; // subtract n becasue image lower limit is ignored
+            long sum = 0;
+            long count = 0;
+            long start = DateTime.Now.Ticks;
+            for (int x = offset + n; x < xlim; x += n) // starts at offset + n because image upper limit of the image is ignored
+            {
+                for (int y = 1; y < n - 1; y++) // starts at 1 because
+                {
+                    // f(i,j) = X + (i-1)*n + y + j - 2
+                    C[x + y] = (byte)
+                        (data[x - n + y - 2] * kernel[0][0] // 0,0
+                        + data[x - n - 1 + y] * kernel[0][1] // 0,1
+                        + data[x - n + y] * kernel[0][2] // 0,2
+                        + data[x + y - 2] * kernel[1][0] // 1,0
+                        + data[x + y - 1] * kernel[1][1] // 1,1
+                        + data[x + y] * kernel[1][2] // 1,2
+                        + data[x + n + y - 2] * kernel[2][0] // 2,0
+                        + data[x + n + y - 1] * kernel[2][1] // 2,1
+                        + data[x + n + y] * kernel[2][2] // 2,2
+                        );
+
+                    count++;
+                    sum += C[x + y];
+                }
+            }
+            long end = DateTime.Now.Ticks;
+            // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we divide by 100 to convert to 10^-9 seconds, nanoseconds
+            Console.WriteLine("Time executing(ns) is " + ((end - start) / 100)); // print time in nanoseconds
             Console.WriteLine("The sum of the processed pixels is " + sum);
             Console.WriteLine("The number of pixels processed is " + count);
             return C;
@@ -186,7 +229,7 @@ namespace image_filter
             }
             long end = DateTime.Now.Ticks;
             // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we divide by 100 to convert to 10^-9 seconds, nanoseconds
-            Console.WriteLine((end - start) / 100); // print time in nanoseconds
+            Console.WriteLine("Time executing(ns) is " + ((end - start) / 100)); // print time in nanoseconds
             Console.WriteLine("The sum of the processed pixels is " + sum);
             Console.WriteLine("The number of pixels processed is " + count);
             return C;
@@ -201,16 +244,16 @@ namespace image_filter
             long sum = 0;
             long count = 0;
             long start = DateTime.Now.Ticks;
-            int limiteKernel = kernel.Length;
+            int k = kernel.Length;
             for (int y = 1; y < n - 1; y++) 
                                                        
             {
                 for (int x = offset + n; x < xlim; x += n) 
                 {
                     C[y + x] = 0; 
-                    for (int j = 0; j < limiteKernel; j++)
+                    for (int j = 0; j < k; j++)
                     {
-                        for (int i = 0; i < limiteKernel; i++)
+                        for (int i = 0; i < k; i++)
                         {
                             int col = y + j - 1;
                             int row = x + (i * n) - n - 1;
@@ -224,44 +267,7 @@ namespace image_filter
             }
             long end = DateTime.Now.Ticks;
             // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we divide by 100 to convert to 10^-9 seconds, nanoseconds
-            Console.WriteLine((end - start) / 100); // print time in nanoseconds
-            Console.WriteLine("The sum of the processed pixels is " + sum);
-            Console.WriteLine("The number of pixels processed is " + count);
-            return C;
-        }
-
-        static byte[] filteringAlgorithmXYUnrolling(byte[] data)
-        {
-            byte[] C = (byte[])data.Clone();
-            int n = (int)Math.Sqrt(data.Length - offset);
-            int xlim = offset + n * (n - 1) + 1 - n; // subtract n becasue image lower limit is ignored
-            long sum = 0;
-            long count = 0;
-            long start = DateTime.Now.Ticks;
-            for (int x = offset + n; x < xlim; x += n) // starts at offset + n because image upper limit of the image is ignored
-            {
-                for (int y = 1; y < n - 1; y++) // starts at 1 because
-                {
-                    // f(i,j) = X + (i-1)*n + y + j - 2
-                    C[x + y] = (byte)
-                        ( data[x - n  + y - 2] * kernel[0][0] // 0,0
-                        + data[x - n - 1 + y] * kernel[0][1] // 0,1
-                        + data[x - n + y] * kernel[0][2] // 0,2
-                        + data[x + y - 2] * kernel[1][0] // 1,0
-                        + data[x + y - 1] * kernel[1][1] // 1,1
-                        + data[x + y] * kernel[1][2] // 1,2
-                        + data[x + n + y - 2] * kernel[2][0] // 2,0
-                        + data[x + n + y - 1] * kernel[2][1] // 2,1
-                        + data[x + n + y] * kernel[2][2] // 2,2
-                        );
-
-                    count++;
-                    sum += C[x + y];
-                }
-            }
-            long end = DateTime.Now.Ticks;
-            // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we divide by 100 to convert to 10^-9 seconds, nanoseconds
-            Console.WriteLine((end - start) / 100); // print time in nanoseconds
+            Console.WriteLine("Time executing(ns) is " + ((end - start) / 100)); // print time in nanoseconds
             Console.WriteLine("The sum of the processed pixels is " + sum);
             Console.WriteLine("The number of pixels processed is " + count);
             return C;
@@ -298,10 +304,24 @@ namespace image_filter
             }
             long end = DateTime.Now.Ticks;
             // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we divide by 100 to convert to 10^-9 seconds, nanoseconds
-            Console.WriteLine((end - start) / 100); // print time in nanoseconds
+            Console.WriteLine("Time executing(ns) is " + ((end - start) / 100)); // print time in nanoseconds
             Console.WriteLine("The sum of the processed pixels is " + sum);
             Console.WriteLine("The number of pixels processed is " + count);
             return C;
+        }
+
+        static void printUsage() {
+            Console.Error.WriteLine("Usage: ");
+            Console.Error.WriteLine("You must specify the dimension of the input image and the algorithm that performs the filter through positional arguments");
+            Console.Error.WriteLine("$ ./Program.exe n a");
+            Console.Error.WriteLine("# Where n is the size of the image, which is assumed to be squared and be located in the imgs/in folder with a name of nxnx8.bmp");
+            Console.Error.WriteLine("# Where a is any of");
+            Console.Error.WriteLine("                   * 1 for x-y-i-j");
+            Console.Error.WriteLine("                   * 2 for x-y-j-i");
+            Console.Error.WriteLine("                   * 3 for x-y-unrolling");
+            Console.Error.WriteLine("                   * 4 for y-x-i-j");
+            Console.Error.WriteLine("                   * 5 for y-x-j-i");
+            Console.Error.WriteLine("                   * 6 for y-x-unrolling");
         }
 
         /*static byte[] filteringAlgorithmXYIJ2(byte[] data)
@@ -336,19 +356,5 @@ namespace image_filter
 
             return data;
         }*/
-
-        static void printUsage() {
-            Console.Error.WriteLine("Usage: ");
-            Console.Error.WriteLine("You must specify the dimension of the input image and the algorithm that performs the filter through positional arguments");
-            Console.Error.WriteLine("$ ./Program.exe n a");
-            Console.Error.WriteLine("# Where n is the size of the image, which is assumed to be squared and be located in the imgs folder with a name of nxnx8.bmp");
-            Console.Error.WriteLine("# Where a is any of");
-            Console.Error.WriteLine("                   * 1 for x-y-i-j");
-            Console.Error.WriteLine("                   * 2 for x-y-j-i");
-            Console.Error.WriteLine("                   * 3 for x-y-unrolling");
-            Console.Error.WriteLine("                   * 4 for y-x-i-j");
-            Console.Error.WriteLine("                   * 5 for y-x-j-i");
-            Console.Error.WriteLine("                   * 6 for y-x-unrolling");
-        }
     }
 }
