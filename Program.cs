@@ -116,7 +116,7 @@ namespace image_filter
                 }
             }
             long end = DateTime.Now.Ticks;
-            // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we divide by 100 to convert to 10^-9 seconds, nanoseconds
+            // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we multiply by 100 to convert to 10^-9 seconds, nanoseconds
             Console.WriteLine("Time executing(ns) is " + ((end - start) * 100)); // print time in nanoseconds
             Console.WriteLine("The sum of the processed pixels is " + sum);
             Console.WriteLine("The number of pixels processed is " + count);
@@ -155,7 +155,7 @@ namespace image_filter
                 }
             }
             long end = DateTime.Now.Ticks;
-            // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we divide by 100 to convert to 10^-9 seconds, nanoseconds
+            // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we multiply by 100 to convert to 10^-9 seconds, nanoseconds
             Console.WriteLine("Time executing(ns) is " + ((end - start) * 100)); // print time in nanoseconds
             Console.WriteLine("The sum of the processed pixels is " + sum);
             Console.WriteLine("The number of pixels processed is " + count);
@@ -192,7 +192,7 @@ namespace image_filter
                 }
             }
             long end = DateTime.Now.Ticks;
-            // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we divide by 100 to convert to 10^-9 seconds, nanoseconds
+            // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we multiply by 100 to convert to 10^-9 seconds, nanoseconds
             Console.WriteLine("Time executing(ns) is " + ((end - start) * 100)); // print time in nanoseconds
             Console.WriteLine("The sum of the processed pixels is " + sum);
             Console.WriteLine("The number of pixels processed is " + count);
@@ -228,7 +228,7 @@ namespace image_filter
                 }
             }
             long end = DateTime.Now.Ticks;
-            // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we divide by 100 to convert to 10^-9 seconds, nanoseconds
+            // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we multiply by 100 to convert to 10^-9 seconds, nanoseconds
             Console.WriteLine("Time executing(ns) is " + ((end - start) * 100)); // print time in nanoseconds
             Console.WriteLine("The sum of the processed pixels is " + sum);
             Console.WriteLine("The number of pixels processed is " + count);
@@ -266,7 +266,7 @@ namespace image_filter
                 }
             }
             long end = DateTime.Now.Ticks;
-            // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we divide by 100 to convert to 10^-9 seconds, nanoseconds
+            // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we multiply by 100 to convert to 10^-9 seconds, nanoseconds
             Console.WriteLine("Time executing(ns) is " + ((end - start) * 100)); // print time in nanoseconds
             Console.WriteLine("The sum of the processed pixels is " + sum);
             Console.WriteLine("The number of pixels processed is " + count);
@@ -303,7 +303,7 @@ namespace image_filter
                 }
             }
             long end = DateTime.Now.Ticks;
-            // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we divide by 100 to convert to 10^-9 seconds, nanoseconds
+            // according to https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks?view=net-5.0#remarks, Ticks are 10^-7 seconds, so we multiply by 100 to convert to 10^-9 seconds, nanoseconds
             Console.WriteLine("Time executing(ns) is " + ((end - start) * 100)); // print time in nanoseconds
             Console.WriteLine("The sum of the processed pixels is " + sum);
             Console.WriteLine("The number of pixels processed is " + count);
